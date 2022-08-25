@@ -86,3 +86,7 @@ server{
  nginx -t
  systemctl restart nginx
  systemctl restart php-fpm
+
+* * * * *    /usr/bin/php /path/to/moodle/admin/cli/cron.php >/dev/null
+
+
