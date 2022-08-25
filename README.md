@@ -2,6 +2,9 @@
  
  
  
+  
+ 
+ 
  yum install php-bcmath php-cli php-common php-devel php-fpm php-gd php-gmp php-intl php-json php-mbstring php-mysqlnd 
 
 yum install php-opcache php-pdo php-pgsql php-process  php-soap  php-xml php-pecl-apcu  php-pear php-mysqlnd 
