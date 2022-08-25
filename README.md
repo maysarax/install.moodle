@@ -2,9 +2,43 @@
  
  
  
+ 
+ How to Install Moodle 3.5 on Centos 7 with nginx
+Prepare the environment
+Step 1 — Installing Nginx on CentOS 7
+
+Since Nginx is not available in default CentOS repositories, we will install EPEL repository by running this command:
+
+yum install epel-release -y
+
+Install nginx
+
+yum install nginx -y
+
+After installation completes, enable nginx start on boot and run it:
+
+systemctl start nginx
+systemctl enable nginx
+Step 2 — Installing MySQL (MariaDB)
+
+yum install mariadb-server mariadb -y
+After finishing the installation, enable and start the service:
+
+systemctl start mariadb
+systemctl enable mariadb
   
- 
- 
+ CREATE DATABASE moodledb;
+ GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodledb.* TO 'moodleadmin'@'localhost' IDENTIFIED BY 'p@zzwd0L2';
+  FLUSH PRIVILEGES;
+  exit
+  
+  chmod 775 -R /var/www/html/moodle
+chown nginx:nginx -R /var/www/html/moodle
+
+ chmod 777 -R /var/www/html/moodledata
+ chown :nginx -R /var/www/html/moodledata
+
+
  yum install php-bcmath php-cli php-common php-devel php-fpm php-gd php-gmp php-intl php-json php-mbstring php-mysqlnd 
 
 yum install php-opcache php-pdo php-pgsql php-process  php-soap  php-xml php-pecl-apcu  php-pear php-mysqlnd 
@@ -49,3 +83,6 @@ server{
 }
 }
 
+ nginx -t
+ systemctl restart nginx
+ systemctl restart php-fpm
